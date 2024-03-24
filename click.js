@@ -75,12 +75,12 @@ app.get('/:page', (req, res) => {
 // Подключение почты
 async function sendToken(email, token) {
     const transporter = nodemailer.createTransport({
-        host: 'mail.rimworlda.ru',
+        host: 'host',
         port: 465,
         secure: true,
         auth: {
-            user: 'help@rimworlda.ru',
-            pass: 'ayUD6nnsV5AlRaKa',
+            user: 'example@example.com',
+            pass: 'pass',
         },
         tls: {
             // servername: 'rimworlda.ru',

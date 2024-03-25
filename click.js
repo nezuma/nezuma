@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 /***********************************************************************/
 // Кукисы
 app.use(sessions({
-    secret: 'your_secret_code',
+    secret: 'TZwKbOLAxW9gCw0zVyw1cpXH',
     cookie: { 
         secure: true, 
         maxAge: 86400000, 
@@ -75,12 +75,12 @@ app.get('/:page', (req, res) => {
 // Подключение почты
 async function sendToken(email, token) {
     const transporter = nodemailer.createTransport({
-        host: 'host',
+        host: 'mail.rimworlda.ru',
         port: 465,
         secure: true,
         auth: {
-            user: 'example@example.com',
-            pass: 'pass',
+            user: 'help@rimworlda.ru',
+            pass: 'ayUD6nnsV5AlRaKa',
         },
         tls: {
             // servername: 'rimworlda.ru',
@@ -222,16 +222,16 @@ app.post('/game', async(req, res) => {
         username: username,
         text: data.text
     });
-    return res.status(200).send({status: 'Сообщение успешно отправлено'});
+    return res.status(200).send({status: 200, message: 'Сообщение успешно отправлено!'});
 });
 // Создание сообщений в чате
 /***********************************************************************/
 // Подгрузка сообщений
 app.post('/api/getchat', async(req, res) => {
-    let messages = await mysql.sequelize.query(`SELECT * FROM Chat`);
+    let messages = await mysql.sequelize.query(`SELECT * FROM (SELECT * FROM Chat ORDER BY id DESC LIMIT 50) AS subquery ORDER BY id ASC;`);
     messages = messages[1];
     let username = {};
-    let text = {}
+    let text = {};
     for(let i = 0; i < messages.length; i++) {
         username += messages[i].username + " ";
         text += messages[i].text + " ";
@@ -248,14 +248,12 @@ app.post('/api/getchat', async(req, res) => {
 });
 // Подгрузка сообщений
 /***********************************************************************/
-// Новост
+// Новости
 
 // Новости
 /***********************************************************************/
 
-
-
-
+/***********************************************************************/
 
 
 

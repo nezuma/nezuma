@@ -91,6 +91,7 @@ export default {
     created() {
         this.coincountget();
         this.getmessages();
+        window.scrollTo(0, document.body.scrollHeight);
     },
 }
 </script>

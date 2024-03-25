@@ -16,5 +16,6 @@ node.js - бек<br>
 <code>npm i crypto-js</code><br>
 #### 7. Отправка сообщений на почту
 <code>npm i nodemailer</code><br>
-
+#### 8. DataBase
+<code>npm i sequelize</code><br>
 В коде бекенда есть все комментарии

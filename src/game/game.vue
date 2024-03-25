@@ -48,8 +48,10 @@ export default {
                 headers: {
                     'Accept': 'applicax tion/json','Content-Type': 'application/json'
                 }
-            }).then(res => res.json()).catch((err) => null);
-            // this.getmessages()
+            }).then(res => res.json()).catch(err => err).then(response => {
+                if(response.status == 200) return document.querySelector('form').querySelector('[name="text"]').value = "", alert(response.message);
+            })
+            this.getmessages();
         },
         async getmessages() {
             const response = await fetch('/api/getchat', {
@@ -76,7 +78,7 @@ export default {
             if(!this.showChatIcon) this.showChatIcon = !this.showChatIcon;
             if(this.showNews) this.showNews = !this.showNews;
             if(!this.showNewsIcon) this.showNewsIcon = !this.showNewsIcon;
-        }
+        },
     },
     computed: {
         messages() {
@@ -113,10 +115,10 @@ export default {
                     </p>
                 </div>
                 <div class="sendmessage">
-                    <span class="close" @click="hideChatandNews">close</span>
+                    <span class="close" @click="hideChatandNews">Х</span>
                     <form action="/game" method="post" onsubmit="event.preventDefault();">
                         <input type="text" name="text" class="input" placeholder="Сообщение"> 
-                        <button class="button">Send</button>
+                        <button class="button" @click="sendmessage">Send</button>
                     </form>
                 </div>
             </div>
@@ -155,7 +157,7 @@ export default {
     height: 120px;
 }
 .chat {
-    background: #333;
+    background: #1c1c2c;
     width: 300px;
     height: 95%;
     position: absolute;
@@ -170,5 +172,12 @@ export default {
 .output {
     height: 90%;
     overflow: overlay;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+.close {
+    position: absolute;
+    top: 1px;
+    left: 275px;
 }
 </style>

@@ -22,7 +22,7 @@
             }).catch(err => {
               console.error(err)
             })
-          }
+          },
         },
         mounted() {
             document.title = 'Clicker | Регистрация';

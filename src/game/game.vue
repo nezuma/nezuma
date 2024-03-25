@@ -91,7 +91,6 @@ export default {
     created() {
         this.coincountget();
         this.getmessages();
-        window.scrollTo(0, document.body.scrollHeight);
     },
 }
 </script>
@@ -180,5 +179,6 @@ export default {
     position: absolute;
     top: 1px;
     left: 275px;
+    cursor: pointer;
 }
 </style>

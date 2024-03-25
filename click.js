@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 /***********************************************************************/
 // Кукисы
 app.use(sessions({
-    secret: 'TZwKbOLAxW9gCw0zVyw1cpXH',
+    secret: '',
     cookie: { 
         secure: true, 
         maxAge: 86400000, 
@@ -80,7 +80,7 @@ async function sendToken(email, token) {
         secure: true,
         auth: {
             user: 'help@rimworlda.ru',
-            pass: 'ayUD6nnsV5AlRaKa',
+            pass: '',
         },
         tls: {
             // servername: 'rimworlda.ru',

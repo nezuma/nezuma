@@ -38,20 +38,20 @@ header {
   border-radius: 12px;
   padding: 5px 10px;
   background: #5d25b1;
-  transition: all .3s;
+  transition: all .3s !important;
   color: #fff;
+  cursor: pointer;
 }
 .button:hover {
   background-color: #7c57b5;
-  transition: all .3s;
 }
 .link {
-  transition: all .3s;
+  transition: all .3s !important;
   color: #5d25b1;
+  cursor: pointer;
 }
 .link:hover {
   color: #7c57b5;
-  transition: all .3s;
 }
 .input {
   border-radius: 25px;

@@ -7,6 +7,7 @@
 //*********************************************//
 
 // Подключение библиотек
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -26,12 +27,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 /***********************************************************************/
 // Данные
-const { cookies, mailauth } = require('data')
+const readFile = fs.readFileSync('./data/data.json', 'utf8');
+const parsedData = JSON.parse(readFile);
 // Данные
 /***********************************************************************/
 // Кукисы
 app.use(sessions({
-    secret: cookies.secret,
+    secret: parsedData.cookies.secret,
     cookie: { 
         secure: true, 
         maxAge: 86400000, 
@@ -63,6 +65,10 @@ app.get('/:page', (req, res) => {
             if (req.session && !req.session.User) return res.redirect('/auth');
             res.sendFile(temp);
             break;
+        case 'profile':
+            if (req.session && !req.session.User) return res.redirect('/auth');
+            res.sendFile(temp);
+            break;
         case 'env':
             res.sendFile(temp);
             break;
@@ -83,8 +89,8 @@ async function sendToken(email, token) {
         port: 465,
         secure: true,
         auth: {
-            user: mailauth.user,
-            pass: mailauth.pass,
+            user: parsedData.mailauth.user,
+            pass: parsedData.mailauth.pass,
         },
         tls: {
             // servername: 'rimworlda.ru',

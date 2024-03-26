@@ -9,6 +9,7 @@ export default {
             showNewsIcon: true,
             showChat: false,
             showNews: false,
+            popupProfile: false,
             usernames: [],
             texts: [],
             succmail: ''
@@ -74,11 +75,14 @@ export default {
             this.showNews = !this.showNews;
         },
         hideChatandNews() {
-            if(this.showChat) this.showChat = !this.showChat;
+            if(this.showChat) this.showChat = !this.showChat;    
             if(!this.showChatIcon) this.showChatIcon = !this.showChatIcon;
             if(this.showNews) this.showNews = !this.showNews;
             if(!this.showNewsIcon) this.showNewsIcon = !this.showNewsIcon;
-        },
+        }, 
+        toggleProfile() {
+            this.popupProfile = !this.popupProfile;
+        }
     },
     computed: {
         messages() {
@@ -102,7 +106,14 @@ export default {
                 <img src="../assets/coins-solid.svg" class="coin-icon">
                 <span class="coins-count" id="counter1">{{ coincount }}</span>
             </div>
-            <div class="profile-tile">{{ username }}</div>
+            <div class="profile-tile" id="profile-tile" @click="toggleProfile">
+                <span class="username">nezuma</span>
+                <div class="avatar"></div>
+            </div>
+            <div class="popup-profile" style="display:none" id="popup-profile" v-show="popupProfile">
+                <a href="/profile" class="link">Настройки профиля</a>
+                <a href="https://vk.com/f9dev" class="link">Связь с нами</a>
+            </div>
         </div>
     </header>
     <section class="section-1">
@@ -138,6 +149,7 @@ export default {
     left: 15px;
     height: 30px;
     cursor: pointer;
+    z-index: 2;
 }
 .news-icon {
     position: absolute;
@@ -145,6 +157,7 @@ export default {
     height: 30px;
     margin-top: 45px;
     cursor: pointer;
+    z-index: 3;
 }
 .section-1 {
     display: flex;
@@ -180,5 +193,41 @@ export default {
     top: 1px;
     left: 275px;
     cursor: pointer;
+}
+.profile-tile {
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    align-items: center;
+    border-radius:15px;
+    background: #1c1c2c;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: all .3s !important;
+    z-index: 1;
+}
+.profile-tile:hover {
+    background: #26263b;
+}
+.avatar {
+    height: 35px;
+    border-radius: 100%;
+    background: #333;
+    width: 35px;
+    
+}
+.username {
+    margin-right: 25px;
+}
+.popup-profile {
+    position: absolute;
+    background: #1c1c2c;
+    width: 250px;
+    height: 200px;
+    right: 15px;
+    top: 85px;
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 0 5px #000;
 }
 </style>

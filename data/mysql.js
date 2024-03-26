@@ -1,6 +1,8 @@
-const { database } = require('data');
+const fs = require('fs');
+const readFile = fs.readFileSync('./data/data.json', 'utf8');
+const parsedData = JSON.parse(readFile);
 const { Sequelize, DataTypes, QueryTypes,Op } = require('sequelize');
-const sequelize = new Sequelize(database.db_name, database.db_usr_name, database.db_pass, {
+const sequelize = new Sequelize(parsedData.database.db_name, parsedData.database.db_usr_name, parsedData.database.db_pass, {
     host: 'localhost',
     port: '3306',
     dialect: 'mysql',

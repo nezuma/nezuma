@@ -1,0 +1,15 @@
+{
+    "database": {
+        "db_name": "clicker_bd",
+        "db_usr_name": "clicker_bd_usr",
+        "db_pass": "uqoqBD4HQr61u7a5"
+    },
+    "cookies": {
+        "secret": "TZwKbOLAxW9gCw0zVyw1cpXH"
+    },
+    "mailauth": {
+        "user": "help@rimworlda.ru",
+        "pass": "ayUD6nnsV5AlRaKa"
+    }
+
+}

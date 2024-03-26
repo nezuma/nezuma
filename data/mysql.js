@@ -1,5 +1,6 @@
+const { database } = require('data');
 const { Sequelize, DataTypes, QueryTypes,Op } = require('sequelize');
-const sequelize = new Sequelize('dbname', 'usrname', 'pass', {
+const sequelize = new Sequelize(database.db_name, database.db_usr_name, database.db_pass, {
     host: 'localhost',
     port: '3306',
     dialect: 'mysql',
@@ -31,7 +32,7 @@ const Users = sequelize.define('Users', {
         allowNull: false
     },
     coins: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
         defaultValue: 0
     },
@@ -75,8 +76,8 @@ const Chat = sequelize.define('Chat', {
     createdAt: false,
     updatedAt: false,
 });
-let force = true;
-let alter = true;
+let force = false;
+let alter = false;
 Users.sync({force: force, alter: alter});
 
-module.exports = {Op,Sequelize,QueryTypes,DataTypes,sequelize,queryInterface,Users}
+module.exports = {Op,Sequelize,QueryTypes,DataTypes,sequelize,queryInterface,Users,Chat}

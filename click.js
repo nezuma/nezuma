@@ -25,9 +25,13 @@ app.use(requestIp.mw());
 app.use(bodyParser.json());     
 app.use(bodyParser.urlencoded({extended: true}));
 /***********************************************************************/
+// Данные
+const { cookies, mailauth } = require('data')
+// Данные
+/***********************************************************************/
 // Кукисы
 app.use(sessions({
-    secret: '',
+    secret: cookies.secret,
     cookie: { 
         secure: true, 
         maxAge: 86400000, 
@@ -79,8 +83,8 @@ async function sendToken(email, token) {
         port: 465,
         secure: true,
         auth: {
-            user: 'help@rimworlda.ru',
-            pass: '',
+            user: mailauth.user,
+            pass: mailauth.pass,
         },
         tls: {
             // servername: 'rimworlda.ru',
